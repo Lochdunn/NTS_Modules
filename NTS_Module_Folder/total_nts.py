@@ -120,7 +120,7 @@ with open('mas14.srt','a') as mas14_file:
             mas14_str = head_str + float_list_to_string(mas14_col[i][j])+str("\n")
             mas14_file.write(mas14_str)
             
-max_title = "Γ(1) Γ(2) Max_Mass  Radius    Cen_Den   Cen_Prs   Cen_Eng   SoS\n"
+max_title = "Γ(1) Γ(2) Max_Mass  Radius    Cen_Den   Cen_Eng   Cen_Prs   SoS\n"
 with open('max.srt','a') as max_file:    
     max_file.write(max_title)
     for i in range(n):
