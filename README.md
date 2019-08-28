@@ -6,9 +6,11 @@ Contains: Folders:
 
 NTS_module_folder
 
-EoS_module_foler
+EoS_module
 
-Beta_module_folder
+Beta_module
+
+
 
 
 Future Additions:
