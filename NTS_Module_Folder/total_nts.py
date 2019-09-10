@@ -15,7 +15,7 @@ counter = 1
 
 tstart = time.time()
 
-subprocess.call("f90 $F90FLAGS -o run -s -w nts_os.f nts_routines.f $LINK_FNL",shell=True)
+#subprocess.call("f90 $F90FLAGS -o run -s -w nts_os.f nts_routines.f $LINK_FNL",shell=True)
  
 pareos_grab = list_file_grab("parameos.don",[],False,True)
 pareos_grab = pareos_grab[0]
