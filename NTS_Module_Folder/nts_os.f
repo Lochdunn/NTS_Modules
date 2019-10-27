@@ -79,8 +79,12 @@ c      Version 2.5.0
 
        open(555,file='par.don')
        read(555,'(A)') par_title
-       read(555,*) nos, ng1, ng2, g1_int, g1_inc, g2_int, g2_inc, nprint, mprint
+       read(555,*) nos, ng1, ng2, g1_int, g1_inc, g2_int, g2_inc,
+     1    nprint, mprint, opNAN
        
+       write(*,*) 'opNAN', nos, ng1, ng2, g1_int, g1_inc, g2_int,
+     1    g2_inc,nprint, mprint, opNAN
+       flag = 0
        g=6.67259D-45*197.327
        pi = 3.14597d0
        fourpi=12.56637061     
@@ -210,10 +214,17 @@ c    Start Runge-Kutta solution for fixed central density
      1                  ,nst2,outpt4,coeff4))         
            
 c    Printing subgroup
-           
-          WRITE(666,500) cen_dens(i), radius(i)*tp, 
+          if (flag .EQ. 1 .and. opNAN .EQ. 1) then 
+             WRITE(666,501) cen_dens(i), radius(i)*tp, 
+     1                   smass(i),'NaN'
+          else
+             WRITE(666,500) cen_dens(i), radius(i)*tp, 
      1                   smass(i),css(i)
-           
+          end if
+          if (css(i) .GT. 1.d0) then 
+             flag = 1
+          end if 
+
 c    Just Cause subgroup: 
 
           if(cen_dens(i) .LT. denlim) then
@@ -223,7 +234,7 @@ c    Just Cause subgroup:
           end if         
 200    continue 
 500    format(2x,E10.4,2x,E10.4,2x,F6.4,2x,F10.4)     
-
+501    format(2x,E10.4,2x,E10.4,2x,F6.4,2x,A5)
 c    Just Cause subgroup
 
        write(888,*) causmass,causrad,causden

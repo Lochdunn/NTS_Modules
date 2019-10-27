@@ -4,22 +4,6 @@
 from PMOD_26 import *
 import subprocess
 
-par_grab = list_file_grab("par.don",[],False,True)
-nos = int(par_grab[0])
-
-
-if(nos == 0):
-    with open('mas14.srt', 'r') as fr:
-        mas14srt = fr.readline()
-    with open('max.srt', 'r') as fr:
-        maxsrt = fr.readline()
-    with open('caus.srt', 'r') as fr:
-        caussrt = fr.readline()
-    with open('eosout.don', 'r') as fr:
-        eosoutdon = fr.readline()
-    with open('outnts.srt', 'r') as fr:
-        outntssrt = fr.readline()
-
 subprocess.call("rm mas14.srt",shell=True)
 subprocess.call("rm max.srt",shell=True)
 subprocess.call("rm caus.srt",shell=True)
@@ -32,7 +16,18 @@ counter = 1
 tstart = time.time()
 
 subprocess.call("f90 $F90FLAGS -o run -s -w nts_os.f nts_routines.f $LINK_FNL",shell=True)
- 
+
+with open('mas14.srt', 'r') as fr:
+    mas14srt = fr.readline()
+with open('max.srt', 'r') as fr:
+    maxsrt = fr.readline()
+with open('caus.srt', 'r') as fr:
+    caussrt = fr.readline()
+with open('eosout.don', 'r') as fr:
+    eosoutdon = fr.readline()
+with open('outnts.srt', 'r') as fr:
+    outntssrt = fr.readline()
+
 pareos_grab = list_file_grab("parameos.don",[],False,True)
 pareos_grab = pareos_grab[0]
 par_grab = list_file_grab("par.don",[],False,True)
