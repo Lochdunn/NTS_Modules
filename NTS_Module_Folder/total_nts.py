@@ -202,6 +202,7 @@ if(ntsprint == 1):
                         nts_add_2 = float(nts_col[i][j][k][1])
                         nts_add_3 = float(nts_col[i][j][k][2])         
                         nts_add_4 = float(nts_col[i][j][k][3])
+                        print('if', nts_add_1, nts_add_2, nts_add_3, nts_add_4)
                         nts_out_str = nts_out_str + numeric_uni_format(nts_add_1) + \
                         "  " + numeric_uni_format(nts_add_3) + "  " + numeric_uni_format(nts_add_2) + \
                         "  " + numeric_uni_format(nts_add_4) + "  "
@@ -209,10 +210,12 @@ if(ntsprint == 1):
                         nts_add_1 = float(nts_col[i][j][k][1])
                         nts_add_2 = float(nts_col[i][j][k][2])
                         nts_add_3 = float(nts_col[i][j][k][3])
+                        print('else', nts_add_1, nts_add_2, nts_add_3,numeric_uni_format(nts_add_3))
                         nts_out_str = nts_out_str + numeric_uni_format(nts_add_2) + \
                         "  " + numeric_uni_format(nts_add_1) + "  " + numeric_uni_format(nts_add_3) + "  "
                     nts_count_run+=1                 
                 nts_out_str = nts_out_str+"\n"
+                print('nts_out_str', nts_out_str)
                 nts_file_write.write(nts_out_str) 
                 nts_out_str = ''
                 nts_count_run=1
