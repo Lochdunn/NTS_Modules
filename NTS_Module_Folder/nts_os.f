@@ -82,7 +82,6 @@ c      Version 2.5.0
        read(555,*) nos, ng1, ng2, g1_int, g1_inc, g2_int, g2_inc,
      1    nprint, mprint, opNAN
        
-c       write(*,*) 'opNAN', opNAN
        flag = 0
        g=6.67259D-45*197.327
        pi = 3.14597d0
@@ -214,8 +213,8 @@ c    Start Runge-Kutta solution for fixed central density
            
 c    Printing subgroup
           if (flag .EQ. 1 .and. opNAN .EQ. 1) then 
-             WRITE(666,500) cen_dens(i), radius(i)*tp, 
-     1                   smass(i), 1.9999099
+             WRITE(666,501) cen_dens(i), radius(i)*tp, 
+     1                   smass(i), -9999
           else
              WRITE(666,500) cen_dens(i), radius(i)*tp, 
      1                   smass(i),css(i)
@@ -232,7 +231,8 @@ c    Just Cause subgroup:
              causmass=smass(i)
           end if         
 200    continue 
-500    format(2x,E10.4,2x,E10.4,2x,F6.4,2x,F10.4)     
+500    format(2x,E10.4,2x,E10.4,2x,F6.4,2x,F10.4)
+501    format(2x,E10.4,2x,E10.4,2x,F6.4,2x,I6)
 c    Just Cause subgroup
 
        write(888,*) causmass,causrad,causden

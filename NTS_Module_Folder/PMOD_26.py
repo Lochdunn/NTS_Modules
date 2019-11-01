@@ -1001,19 +1001,18 @@ def float_list_to_string(n):
 #--------------------------------------------------------------------------------------------------
     
 def numeric_uni_format(x):
-    print('x', x)
+    
     numeric_assert(x,'x')
-    print('xx', x)
+    
     if(np.isnan(x) == True):
         x = 0.0
-    
+   
     pos_bool = (x > 0.0)
     neg_bool = (x < 0.0)
     nul_bool = (x == 0.0)
-    nan_bool = (x == 1.99990)
+    nan_bool = (x == -9999)
     
     if(nan_bool):
-        print('nan_bool', nan_bool)
         outpt = 'nan     '
     elif(pos_bool is True):
         if(x < 10000000):
@@ -1041,8 +1040,7 @@ def numeric_uni_format(x):
             outpt = round_decimal_sci(x,2,True)
     else:
         outpt = '0.000000'
-    if(nan_bool):
-        print('outpt', outpt)
+    
     return outpt
 
 #--------------------------------------------------------------------------------------------------
