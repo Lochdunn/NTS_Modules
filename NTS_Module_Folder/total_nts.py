@@ -100,6 +100,16 @@ for i in range(n):
     
     mas14_group, max_group, caus_group, eos_group, nts_group = empty_lists(5) 
 
+with open('mas14.srt', 'r') as fr:
+    mas14srt = fr.readline()
+with open('max.srt', 'r') as fr:
+    maxsrt = fr.readline()
+with open('caus.srt', 'r') as fr:
+    caussrt = fr.readline()
+#with open('eosout.don', 'r') as fr:
+#    eosoutdon = fr.readline()
+with open('outnts.srt', 'r') as fr:
+    outntssrt = fr.readline()
 if(nos == 1):
     subprocess.call("rm mas14.srt",shell=True)
     subprocess.call("rm max.srt",shell=True)
@@ -108,37 +118,57 @@ if(nos == 1):
     subprocess.call("rm outnts.srt",shell=True)
     
 # Printing Loops
+if (nos == 0):
+    mas14_title = "     Radius    Cen_Den    Cen_Eng        SoS\n"
+    mas14_srts = "    ".join(mas14srt.split("\t"))
+    with open('mas14.srt','w') as fw:    
+        fw.write(mas14_title)
+        fw.write(mas14_srts)
 
+    max_title = "     Max_Mass   Radius     Cen_Den Cen_Eng     Cen_Prs      SoS\n"
+    max_srts = "    ".join(maxsrt.split("\t"))
+    with open('max.srt','w') as fw:    
+        fw.write(max_title)
+        fw.write(maxsrt)
 
-mas14_title = "Γ(1) Γ(2) Radius    Cen_Den   Cen_Eng   SoS\n"
-with open('mas14.srt','a') as mas14_file:    
-    mas14_file.write(mas14_title)
-    for i in range(n):
-        mas14_file.write("\n")
-        for j in range(m):
-            head_str = str(gam1s[i]) + "  "+str(gam1s[j])+"  "
-            mas14_str = head_str + float_list_to_string(mas14_col[i][j])+str("\n")
-            mas14_file.write(mas14_str)
-            
-max_title = "Γ(1) Γ(2) Max_Mass  Radius    Cen_Den   Cen_Eng   Cen_Prs   SoS\n"
-with open('max.srt','a') as max_file:    
-    max_file.write(max_title)
-    for i in range(n):
-        max_file.write("\n")
-        for j in range(m):
-            head_str = str(gam1s[i]) + "  "+str(gam1s[j])+"  "
-            max_str = head_str + float_list_to_string(max_col[i][j])+str("\n")
-            max_file.write(max_str)  
+    caus_title = "        CausMass          Radius           Cen_Den\n"
+    caus_srts = "    ".join(caussrt.split("\t"))
 
-caus_title = "Γ(1) Γ(2) CausMass  Radius    Cen_Den\n"
-with open('caus.srt','a') as caus_file:    
-    caus_file.write(caus_title)
-    for i in range(n):
-        caus_file.write("\n")
-        for j in range(m):
-            head_str = str(gam1s[i]) + "  "+str(gam1s[j])+"  "
-            caus_str = head_str + float_list_to_string(caus_col[i][j])+str("\n")
-            caus_file.write(caus_str)  
+    with open('caus.srt','w') as fw:    
+        fw.write(caus_title)
+
+        fw.write(caussrt)
+
+else:
+    mas14_title = "Γ(1) Γ(2) Radius    Cen_Den   Cen_Eng   SoS\n"
+    with open('mas14.srt','a') as mas14_file:    
+        mas14_file.write(mas14_title)
+        for i in range(n):
+            mas14_file.write("\n")
+            for j in range(m):
+                head_str = str(gam1s[i]) + "  "+str(gam1s[j])+"  "
+                mas14_str = head_str + float_list_to_string(mas14_col[i][j])+str("\n")
+                mas14_file.write(mas14_str)
+
+    max_title = "Γ(1) Γ(2) Max_Mass  Radius    Cen_Den   Cen_Eng   Cen_Prs   SoS\n"                
+    with open('max.srt','a') as max_file:    
+        max_file.write(max_title)
+        for i in range(n):
+            max_file.write("\n")
+            for j in range(m):
+                head_str = str(gam1s[i]) + "  "+str(gam1s[j])+"  "
+                max_str = head_str + float_list_to_string(max_col[i][j])+str("\n")
+                max_file.write(max_str)  
+
+    caus_title = "Γ(1) Γ(2) CausMass  Radius    Cen_Den\n"                
+    with open('caus.srt','a') as caus_file:    
+        caus_file.write(caus_title)
+        for i in range(n):
+            caus_file.write("\n")
+            for j in range(m):
+                head_str = str(gam1s[i]) + "  "+str(gam1s[j])+"  "
+                caus_str = head_str + float_list_to_string(caus_col[i][j])+str("\n")
+                caus_file.write(caus_str)  
             
 eos_count_run = 1
 eos_header_string ='Den       '
